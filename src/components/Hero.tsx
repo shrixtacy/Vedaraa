@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Download, Calendar } from "lucide-react";
 import { useEffect, useState } from "react";
 import heroBackground from "@/assets/hero-background.jpg";
-import floatingSofa from "@/assets/floating-sofa.png";
 
 const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -34,19 +33,6 @@ const Hero = () => {
         <div className="absolute inset-0 bg-black/60" />
       </div>
 
-      {/* Floating Sofa with Parallax */}
-      <div 
-        className="absolute right-0 top-1/2 w-[500px] h-[500px] pointer-events-none opacity-30 hidden lg:block"
-        style={{ 
-          transform: `translateY(${-250 + scrollY * 0.8}px)`,
-        }}
-      >
-        <img 
-          src={floatingSofa} 
-          alt="Floating luxury sofa"
-          className="w-full h-full object-contain drop-shadow-2xl"
-        />
-      </div>
 
       {/* Content */}
       <div className="container mx-auto px-6 py-20 relative z-10">
