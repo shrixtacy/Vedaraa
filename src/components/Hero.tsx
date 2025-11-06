@@ -1,33 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { Download, Calendar } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useParallax } from "@/hooks/useParallax";
+import { scrollToSection } from "@/lib/scroll";
 import heroBackground from "@/assets/hero-background.jpg";
 
 const Hero = () => {
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    element?.scrollIntoView({ behavior: "smooth" });
-  };
+  const { elementRef, transform } = useParallax({ speed: 0.5 });
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section ref={elementRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div 
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center parallax-bg"
         style={{ 
           backgroundImage: `url(${heroBackground})`,
-          transform: `translateY(${scrollY * 0.5}px)`,
+          transform: transform,
         }}
       >
         <div className="absolute inset-0 bg-black/60" />

@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Award, Users, Sparkles, Clock } from "lucide-react";
+import StaggeredAnimation from "@/components/StaggeredAnimation";
+import { useParallax } from "@/hooks/useParallax";
 import aboutBackground from "@/assets/about-background.jpg";
 
 const stats = [
@@ -10,18 +12,15 @@ const stats = [
 ];
 
 const About = () => {
-  const [scrollY, setScrollY] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
   const [counts, setCounts] = useState(stats.map(() => 0));
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const { elementRef, transform } = useParallax({ speed: 0.4 });
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY);
-      
       // Trigger counter animation when section is in view
-      if (sectionRef.current && !hasAnimated) {
-        const rect = sectionRef.current.getBoundingClientRect();
+      if (elementRef.current && !hasAnimated) {
+        const rect = elementRef.current.getBoundingClientRect();
         if (rect.top < window.innerHeight * 0.7) {
           setHasAnimated(true);
           animateCounters();
@@ -31,7 +30,7 @@ const About = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [hasAnimated]);
+  }, [hasAnimated, elementRef]);
 
   const animateCounters = () => {
     stats.forEach((stat, index) => {
@@ -61,13 +60,17 @@ const About = () => {
   };
 
   return (
-    <section ref={sectionRef} id="about" className="relative py-32 px-6 overflow-hidden min-h-screen flex items-center">
+    <section 
+      ref={elementRef} 
+      id="about" 
+      className="relative py-32 px-6 overflow-hidden min-h-screen flex items-center"
+    >
       {/* Parallax Background */}
       <div 
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center parallax-bg"
         style={{ 
           backgroundImage: `url(${aboutBackground})`,
-          transform: `translateY(${(scrollY - 800) * 0.4}px)`,
+          transform: transform,
         }}
       >
         <div className="absolute inset-0 bg-black/70" />
@@ -82,14 +85,17 @@ const About = () => {
           </div>
 
           {/* Stats Counter */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
+          <StaggeredAnimation 
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
+            staggerDelay={0.1}
+            animationType="scaleUp"
+          >
             {stats.map((stat, index) => {
               const Icon = stat.icon;
               return (
                 <div
                   key={index}
-                  className="text-center p-6 border border-primary/30 rounded-sm bg-card/50 backdrop-blur-sm animate-fade-in hover:shadow-gold transition-smooth"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="text-center p-6 border border-primary/30 rounded-sm bg-card/50 backdrop-blur-sm hover:shadow-gold transition-smooth"
                 >
                   <Icon className="w-8 h-8 text-primary mx-auto mb-4" />
                   <div className="text-4xl font-heading text-primary mb-2">
@@ -99,11 +105,15 @@ const About = () => {
                 </div>
               );
             })}
-          </div>
+          </StaggeredAnimation>
 
           {/* Philosophy Cards */}
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-4 p-6 border border-primary/20 rounded-sm bg-card/30 backdrop-blur-sm animate-fade-in hover:border-primary/50 transition-smooth">
+          <StaggeredAnimation 
+            className="grid md:grid-cols-2 gap-8"
+            staggerDelay={0.15}
+            animationType="fadeUp"
+          >
+            <div className="space-y-4 p-6 border border-primary/20 rounded-sm bg-card/30 backdrop-blur-sm hover:border-primary/50 transition-smooth">
               <h3 className="text-2xl font-heading text-primary">Timeless Elegance</h3>
               <p className="text-muted-foreground leading-relaxed">
                 We create interiors that transcend trends, focusing on classic proportions, 
@@ -111,7 +121,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="space-y-4 p-6 border border-primary/20 rounded-sm bg-card/30 backdrop-blur-sm animate-fade-in hover:border-primary/50 transition-smooth" style={{ animationDelay: "0.1s" }}>
+            <div className="space-y-4 p-6 border border-primary/20 rounded-sm bg-card/30 backdrop-blur-sm hover:border-primary/50 transition-smooth">
               <h3 className="text-2xl font-heading text-primary">Bespoke Design</h3>
               <p className="text-muted-foreground leading-relaxed">
                 Every project is uniquely tailored to our clients' vision, lifestyle, and aspirations. 
@@ -119,7 +129,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="space-y-4 p-6 border border-primary/20 rounded-sm bg-card/30 backdrop-blur-sm animate-fade-in hover:border-primary/50 transition-smooth" style={{ animationDelay: "0.2s" }}>
+            <div className="space-y-4 p-6 border border-primary/20 rounded-sm bg-card/30 backdrop-blur-sm hover:border-primary/50 transition-smooth">
               <h3 className="text-2xl font-heading text-primary">Premium Craftsmanship</h3>
               <p className="text-muted-foreground leading-relaxed">
                 Our partnerships with master artisans and luxury suppliers ensure that every detail, 
@@ -127,14 +137,14 @@ const About = () => {
               </p>
             </div>
 
-            <div className="space-y-4 p-6 border border-primary/20 rounded-sm bg-card/30 backdrop-blur-sm animate-fade-in hover:border-primary/50 transition-smooth" style={{ animationDelay: "0.3s" }}>
+            <div className="space-y-4 p-6 border border-primary/20 rounded-sm bg-card/30 backdrop-blur-sm hover:border-primary/50 transition-smooth">
               <h3 className="text-2xl font-heading text-primary">Seamless Execution</h3>
               <p className="text-muted-foreground leading-relaxed">
                 From concept to completion, we manage every aspect of your project with precision, 
                 ensuring a stress-free experience and impeccable results.
               </p>
             </div>
-          </div>
+          </StaggeredAnimation>
         </div>
       </div>
     </section>

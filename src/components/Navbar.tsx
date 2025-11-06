@@ -17,8 +17,13 @@ const Navbar = () => {
   }, []);
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    element?.scrollIntoView({ behavior: "smooth" });
+    // Use Lenis smooth scroll if available, fallback to native
+    if (typeof window !== 'undefined' && (window as any).lenis) {
+      (window as any).lenis.scrollTo(`#${id}`, { duration: 1.5 });
+    } else {
+      const element = document.getElementById(id);
+      element?.scrollIntoView({ behavior: "smooth" });
+    }
     setMobileOpen(false);
   };
 

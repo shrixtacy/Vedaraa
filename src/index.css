@@ -62,7 +62,49 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground font-body antialiased;
-    scroll-behavior: smooth;
+  }
+
+  /* Optimize animations for better performance */
+  * {
+    will-change: auto;
+  }
+
+  /* Parallax optimization */
+  .parallax-bg {
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* Lenis smooth scrolling styles */
+  html.lenis {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -121,5 +163,80 @@ All colors MUST be HSL.
 
   .gradient-dark {
     background: var(--gradient-dark);
+  }
+
+  /* Scroll Animation Utilities */
+  .animate-fade-up {
+    animation: fadeUp 0.8s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  .animate-slide-left {
+    animation: slideLeft 0.8s ease-out forwards;
+  }
+
+  .animate-slide-right {
+    animation: slideRight 0.8s ease-out forwards;
+  }
+
+  .animate-scale-up {
+    animation: scaleUp 0.8s ease-out forwards;
+  }
+}
+
+/* Keyframe animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }

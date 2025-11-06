@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
+import StaggeredAnimation from "@/components/StaggeredAnimation";
+import { useParallax } from "@/hooks/useParallax";
 import portfolio1 from "@/assets/portfolio-1.jpg";
 import portfolio2 from "@/assets/portfolio-2.jpg";
 import portfolio3 from "@/assets/portfolio-3.jpg";
@@ -68,18 +70,9 @@ const portfolioItems = [
 ];
 
 const Portfolio = () => {
-  const [scrollY, setScrollY] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedProject, setSelectedProject] = useState<typeof portfolioItems[0] | null>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const { elementRef, transform } = useParallax({ speed: 0.3 });
 
   const categories = ["All", "Residential", "Commercial"];
   const filteredItems = selectedCategory === "All" 
@@ -87,13 +80,13 @@ const Portfolio = () => {
     : portfolioItems.filter(item => item.category === selectedCategory);
 
   return (
-    <section id="portfolio" className="relative py-32 px-6 overflow-hidden min-h-screen flex items-center">
+    <section ref={elementRef} id="portfolio" className="relative py-32 px-6 overflow-hidden min-h-screen flex items-center">
       {/* Parallax Background */}
       <div 
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center parallax-bg"
         style={{ 
           backgroundImage: `url(${portfolioBackground})`,
-          transform: `translateY(${(scrollY - 1800) * 0.4}px)`,
+          transform: transform,
         }}
       >
         <div className="absolute inset-0 bg-black/75" />
@@ -120,12 +113,15 @@ const Portfolio = () => {
           ))}
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredItems.map((item, index) => (
+        <StaggeredAnimation 
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          staggerDelay={0.15}
+          animationType="fadeUp"
+        >
+          {filteredItems.map((item) => (
             <div
               key={item.id}
-              className="group relative overflow-hidden rounded-sm border border-primary/20 animate-fade-in cursor-pointer"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="group relative overflow-hidden rounded-sm border border-primary/20 cursor-pointer"
               onClick={() => setSelectedProject(item)}
             >
               <img
@@ -144,7 +140,7 @@ const Portfolio = () => {
               </div>
             </div>
           ))}
-        </div>
+        </StaggeredAnimation>
 
         {/* Project Details Modal */}
         <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
