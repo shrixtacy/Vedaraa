@@ -1,0 +1,7 @@
+{
+  "git": {
+    "lfs": true
+  },
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist"
+}
