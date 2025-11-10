@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, X } from "lucide-react";
@@ -6,6 +7,7 @@ import { Menu, X } from "lucide-react";
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,16 +18,16 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    // Use Lenis smooth scroll if available, fallback to native
-    if (typeof window !== 'undefined' && (window as any).lenis) {
-      (window as any).lenis.scrollTo(`#${id}`, { duration: 1.5 });
-    } else {
-      const element = document.getElementById(id);
-      element?.scrollIntoView({ behavior: "smooth" });
-    }
-    setMobileOpen(false);
-  };
+  const navigationItems = [
+    { name: "home", path: "/" },
+    { name: "about", path: "/about" },
+    { name: "portfolio", path: "/portfolio" },
+    { name: "downloads", path: "/downloads" },
+    { name: "contact", path: "/contact" },
+    { name: "meeting", path: "/meeting" }
+  ];
+
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <nav
@@ -35,18 +37,24 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-heading text-primary tracking-wider">VEDARA</h1>
+          <Link to="/" className="text-2xl font-heading text-primary tracking-wider">
+            VEDARA
+          </Link>
           
           {/* Desktop Menu */}
           <ul className="hidden md:flex items-center gap-8">
-            {["about", "portfolio", "downloads", "contact", "meeting"].map((item) => (
-              <li key={item}>
-                <button
-                  onClick={() => scrollToSection(item)}
-                  className="relative text-sm uppercase tracking-wide text-foreground hover:text-primary transition-smooth after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+            {navigationItems.map((item) => (
+              <li key={item.name}>
+                <Link
+                  to={item.path}
+                  className={`relative text-sm uppercase tracking-wide transition-smooth after:absolute after:bottom-0 after:left-0 after:h-[1px] after:bg-primary after:transition-all after:duration-300 ${
+                    isActive(item.path)
+                      ? "text-primary after:w-full"
+                      : "text-foreground hover:text-primary after:w-0 hover:after:w-full"
+                  }`}
                 >
-                  {item}
-                </button>
+                  {item.name}
+                </Link>
               </li>
             ))}
           </ul>
@@ -61,14 +69,19 @@ const Navbar = () => {
             <SheetContent side="right" className="bg-background border-primary/30 w-[300px]">
               <div className="flex flex-col gap-6 mt-8">
                 <h2 className="text-2xl font-heading text-primary mb-4">Menu</h2>
-                {["about", "portfolio", "downloads", "contact", "meeting"].map((item) => (
-                  <button
-                    key={item}
-                    onClick={() => scrollToSection(item)}
-                    className="text-left text-lg uppercase tracking-wide text-foreground hover:text-primary transition-smooth py-2 border-b border-primary/20"
+                {navigationItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    onClick={() => setMobileOpen(false)}
+                    className={`text-left text-lg uppercase tracking-wide transition-smooth py-2 border-b border-primary/20 ${
+                      isActive(item.path)
+                        ? "text-primary"
+                        : "text-foreground hover:text-primary"
+                    }`}
                   >
-                    {item}
-                  </button>
+                    {item.name}
+                  </Link>
                 ))}
               </div>
             </SheetContent>

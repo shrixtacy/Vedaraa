@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Download, Calendar } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useParallax } from "@/hooks/useParallax";
-import { scrollToSection } from "@/lib/scroll";
 import heroBackground from "@/assets/hero-background.jpg";
 
 const Hero = () => {
   const { elementRef, transform } = useParallax({ speed: 0.5 });
+  const navigate = useNavigate();
 
   return (
     <section ref={elementRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -40,7 +41,7 @@ const Hero = () => {
               <Button 
                 variant="luxury" 
                 size="lg"
-                onClick={() => scrollToSection("downloads")}
+                onClick={() => navigate("/downloads")}
                 className="shadow-gold"
               >
                 <Download className="mr-2" />
@@ -49,7 +50,7 @@ const Hero = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                onClick={() => scrollToSection("meeting")}
+                onClick={() => navigate("/meeting")}
                 className="border-primary/50 text-foreground hover:bg-primary/10"
               >
                 <Calendar className="mr-2" />

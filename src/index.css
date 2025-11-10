@@ -76,6 +76,12 @@ All colors MUST be HSL.
     perspective: 1000px;
   }
 
+  /* 3D Canvas optimization */
+  canvas {
+    outline: none;
+    touch-action: none;
+  }
+
   /* Lenis smooth scrolling styles */
   html.lenis {
     height: auto;
@@ -238,5 +244,14 @@ All colors MUST be HSL.
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

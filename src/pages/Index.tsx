@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import HeroWithFlowingModel from "@/components/HeroWithFlowingModel";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Portfolio from "@/components/Portfolio";
@@ -13,6 +14,10 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <main>
+        {/* Hero with Flowing 3D Model - Model flows from right to left on scroll */}
+        <HeroWithFlowingModel />
+        
+        {/* Original Hero Section */}
         <ScrollAnimationWrapper animationType="fadeIn" duration={1}>
           <Hero />
         </ScrollAnimationWrapper>
