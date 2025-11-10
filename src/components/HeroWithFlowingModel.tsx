@@ -180,7 +180,7 @@ const HeroWithFlowingModel = () => {
                   >
                     <Suspense fallback={null}>
                       <ModelViewer 
-                        src="https://github.com/shrixtacy/Vedaraa/releases/download/v1.0.0/sofa_and_lamp.glb"
+                        src="/sofa_and_lamp.glb"
                         alt="Luxury Sofa and Lamp"
                         autoRotate={false}
                         cameraControls={false}
@@ -230,7 +230,7 @@ const HeroWithFlowingModel = () => {
         >
           <Suspense fallback={null}>
             <ModelViewer 
-              src="https://github.com/shrixtacy/Vedaraa/releases/download/v1.0.0/sofa_and_lamp.glb"
+              src="/sofa_and_lamp.glb"
               alt="Luxury Sofa and Lamp"
               autoRotate={false}
               cameraControls={false}

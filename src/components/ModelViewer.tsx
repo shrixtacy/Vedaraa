@@ -32,13 +32,14 @@ const ModelViewer = ({
     const viewer = viewerRef.current;
     if (viewer) {
       viewer.addEventListener('load', () => {
-        console.log('Model loaded successfully');
+        console.log('Model loaded successfully from:', src);
       });
       viewer.addEventListener('error', (event: any) => {
-        console.error('Error loading model:', event);
+        console.error('Error loading model from:', src, event);
+        console.error('Make sure the file exists at:', window.location.origin + src);
       });
     }
-  }, []);
+  }, [src]);
 
   return (
     <model-viewer
