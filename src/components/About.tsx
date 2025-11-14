@@ -63,7 +63,7 @@ const About = () => {
     <section 
       ref={elementRef} 
       id="about" 
-      className="relative py-32 px-6 overflow-hidden min-h-screen flex items-center"
+      className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 overflow-hidden min-h-screen flex items-center"
     >
       {/* Parallax Background */}
       <div 
@@ -78,15 +78,15 @@ const About = () => {
 
       <div className="container mx-auto relative z-10">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16 animate-fade-in">
-            <p className="text-primary font-accent text-4xl mb-4">Our Philosophy</p>
-            <h2 className="text-5xl font-heading mb-6">The VEDARA Approach</h2>
+          <div className="text-center mb-12 sm:mb-16 animate-fade-in">
+            <p className="text-primary font-accent text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4">Our Philosophy</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading mb-4 sm:mb-6">The VEDARA Approach</h2>
             <div className="w-24 h-[1px] bg-primary mx-auto" />
           </div>
 
           {/* Stats Counter */}
           <StaggeredAnimation 
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
+            className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-12 sm:mb-16 md:mb-20"
             staggerDelay={0.1}
             animationType="scaleUp"
           >
@@ -95,13 +95,13 @@ const About = () => {
               return (
                 <div
                   key={index}
-                  className="text-center p-6 border border-primary/30 rounded-sm bg-card/50 backdrop-blur-sm hover:shadow-gold transition-smooth"
+                  className="text-center p-4 sm:p-6 border border-primary/30 rounded-sm bg-card/50 backdrop-blur-sm hover:shadow-gold transition-smooth"
                 >
-                  <Icon className="w-8 h-8 text-primary mx-auto mb-4" />
-                  <div className="text-4xl font-heading text-primary mb-2">
+                  <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-primary mx-auto mb-3 sm:mb-4" />
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-heading text-primary mb-1 sm:mb-2">
                     {counts[index]}{stat.suffix}
                   </div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">{stat.label}</div>
                 </div>
               );
             })}
@@ -109,37 +109,37 @@ const About = () => {
 
           {/* Philosophy Cards */}
           <StaggeredAnimation 
-            className="grid md:grid-cols-2 gap-8"
+            className="grid sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8"
             staggerDelay={0.15}
             animationType="fadeUp"
           >
-            <div className="space-y-4 p-6 border border-primary/20 rounded-sm bg-card/30 backdrop-blur-sm hover:border-primary/50 transition-smooth">
-              <h3 className="text-2xl font-heading text-primary">Timeless Elegance</h3>
-              <p className="text-muted-foreground leading-relaxed">
+            <div className="space-y-3 sm:space-y-4 p-4 sm:p-6 border border-primary/20 rounded-sm bg-card/30 backdrop-blur-sm hover:border-primary/50 transition-smooth">
+              <h3 className="text-xl sm:text-2xl font-heading text-primary">Timeless Elegance</h3>
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                 We create interiors that transcend trends, focusing on classic proportions, 
                 premium materials, and sophisticated color palettes that stand the test of time.
               </p>
             </div>
 
-            <div className="space-y-4 p-6 border border-primary/20 rounded-sm bg-card/30 backdrop-blur-sm hover:border-primary/50 transition-smooth">
-              <h3 className="text-2xl font-heading text-primary">Bespoke Design</h3>
-              <p className="text-muted-foreground leading-relaxed">
+            <div className="space-y-3 sm:space-y-4 p-4 sm:p-6 border border-primary/20 rounded-sm bg-card/30 backdrop-blur-sm hover:border-primary/50 transition-smooth">
+              <h3 className="text-xl sm:text-2xl font-heading text-primary">Bespoke Design</h3>
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                 Every project is uniquely tailored to our clients' vision, lifestyle, and aspirations. 
                 We don't follow templates—we craft individualized spaces that reflect your personality.
               </p>
             </div>
 
-            <div className="space-y-4 p-6 border border-primary/20 rounded-sm bg-card/30 backdrop-blur-sm hover:border-primary/50 transition-smooth">
-              <h3 className="text-2xl font-heading text-primary">Premium Craftsmanship</h3>
-              <p className="text-muted-foreground leading-relaxed">
+            <div className="space-y-3 sm:space-y-4 p-4 sm:p-6 border border-primary/20 rounded-sm bg-card/30 backdrop-blur-sm hover:border-primary/50 transition-smooth">
+              <h3 className="text-xl sm:text-2xl font-heading text-primary">Premium Craftsmanship</h3>
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                 Our partnerships with master artisans and luxury suppliers ensure that every detail, 
                 from custom furniture to finishing touches, exemplifies excellence.
               </p>
             </div>
 
-            <div className="space-y-4 p-6 border border-primary/20 rounded-sm bg-card/30 backdrop-blur-sm hover:border-primary/50 transition-smooth">
-              <h3 className="text-2xl font-heading text-primary">Seamless Execution</h3>
-              <p className="text-muted-foreground leading-relaxed">
+            <div className="space-y-3 sm:space-y-4 p-4 sm:p-6 border border-primary/20 rounded-sm bg-card/30 backdrop-blur-sm hover:border-primary/50 transition-smooth">
+              <h3 className="text-xl sm:text-2xl font-heading text-primary">Seamless Execution</h3>
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                 From concept to completion, we manage every aspect of your project with precision, 
                 ensuring a stress-free experience and impeccable results.
               </p>

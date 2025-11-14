@@ -80,7 +80,7 @@ const Portfolio = () => {
     : portfolioItems.filter(item => item.category === selectedCategory);
 
   return (
-    <section ref={elementRef} id="portfolio" className="relative py-32 px-6 overflow-hidden min-h-screen flex items-center">
+    <section ref={elementRef} id="portfolio" className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 overflow-hidden min-h-screen flex items-center">
       {/* Parallax Background */}
       <div 
         className="absolute inset-0 bg-cover bg-center parallax-bg"
@@ -93,20 +93,21 @@ const Portfolio = () => {
       </div>
 
       <div className="container mx-auto relative z-10">
-        <div className="text-center mb-12 animate-fade-in">
-          <p className="text-primary font-accent text-4xl mb-4">Our Work</p>
-          <h2 className="text-5xl font-heading mb-6">Portfolio Showcase</h2>
+        <div className="text-center mb-8 sm:mb-12 animate-fade-in">
+          <p className="text-primary font-accent text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4">Our Work</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading mb-4 sm:mb-6">Portfolio Showcase</h2>
           <div className="w-24 h-[1px] bg-primary mx-auto" />
         </div>
 
         {/* Category Filter */}
-        <div className="flex justify-center gap-4 mb-12 animate-fade-in">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 sm:mb-12 animate-fade-in">
           {categories.map((category) => (
             <Button
               key={category}
               variant={selectedCategory === category ? "luxury" : "outline"}
               onClick={() => setSelectedCategory(category)}
-              className={selectedCategory === category ? "bg-primary text-primary-foreground" : ""}
+              className={`text-sm sm:text-base ${selectedCategory === category ? "bg-primary text-primary-foreground" : ""}`}
+              size="sm"
             >
               {category}
             </Button>
@@ -114,7 +115,7 @@ const Portfolio = () => {
         </div>
 
         <StaggeredAnimation 
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
           staggerDelay={0.15}
           animationType="fadeUp"
         >
@@ -127,14 +128,14 @@ const Portfolio = () => {
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110"
+                className="w-full h-60 sm:h-72 md:h-80 object-cover transition-transform duration-700 group-hover:scale-110"
               />
               
               {/* Hover overlay */}
-              <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center p-6">
-                <p className="text-primary text-sm uppercase tracking-wider mb-2">{item.category}</p>
-                <h3 className="text-foreground text-2xl font-heading text-center mb-4">{item.title}</h3>
-                <button className="border border-primary px-6 py-2 text-foreground hover:bg-primary hover:text-primary-foreground transition-smooth">
+              <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center p-4 sm:p-6">
+                <p className="text-primary text-xs sm:text-sm uppercase tracking-wider mb-2">{item.category}</p>
+                <h3 className="text-foreground text-lg sm:text-xl md:text-2xl font-heading text-center mb-3 sm:mb-4">{item.title}</h3>
+                <button className="border border-primary px-4 sm:px-6 py-1.5 sm:py-2 text-sm sm:text-base text-foreground hover:bg-primary hover:text-primary-foreground transition-smooth">
                   View Details
                 </button>
               </div>
@@ -144,20 +145,20 @@ const Portfolio = () => {
 
         {/* Project Details Modal */}
         <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-          <DialogContent className="max-w-3xl bg-background border-primary/30">
+          <DialogContent className="max-w-3xl bg-background border-primary/30 max-h-[90vh] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle className="text-3xl font-heading text-primary">
+              <DialogTitle className="text-xl sm:text-2xl md:text-3xl font-heading text-primary pr-8">
                 {selectedProject?.title}
               </DialogTitle>
             </DialogHeader>
             {selectedProject && (
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 <img
                   src={selectedProject.image}
                   alt={selectedProject.title}
-                  className="w-full h-96 object-cover rounded-sm"
+                  className="w-full h-48 sm:h-64 md:h-96 object-cover rounded-sm"
                 />
-                <div className="flex gap-6 text-sm text-muted-foreground">
+                <div className="flex flex-wrap gap-3 sm:gap-6 text-xs sm:text-sm text-muted-foreground">
                   <div>
                     <span className="text-primary font-semibold">Category:</span> {selectedProject.category}
                   </div>
@@ -168,7 +169,7 @@ const Portfolio = () => {
                     <span className="text-primary font-semibold">Year:</span> {selectedProject.year}
                   </div>
                 </div>
-                <p className="text-foreground leading-relaxed">{selectedProject.description}</p>
+                <p className="text-sm sm:text-base text-foreground leading-relaxed">{selectedProject.description}</p>
               </div>
             )}
           </DialogContent>

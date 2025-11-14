@@ -52,6 +52,15 @@ const HeroWithFlowingModel = () => {
 
   // Calculate model position and camera orbit based on scroll
   const getModelStyle = () => {
+    const isMobile = window.innerWidth < 768;
+    
+    // On mobile, hide the flowing model completely
+    if (isMobile) {
+      return {
+        display: 'none' as const,
+      };
+    }
+    
     // Start animation earlier at 30% scroll instead of 50%
     const transitionProgress = Math.max(0, (scrollProgress - 0.3) * 1.43); // 0 to 1, starts at 30%
     
@@ -113,24 +122,24 @@ const HeroWithFlowingModel = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center h-full">
             {/* Left Side - Minimal Text Content */}
             <ScrollAnimationWrapper animationType="slideRight" duration={1}>
-              <div className="space-y-12">
+              <div className="space-y-8 md:space-y-12 text-center md:text-left">
                 <div>
-                  <h1 className="text-7xl md:text-8xl lg:text-9xl font-heading mb-8 leading-none">
+                  <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-heading mb-6 md:mb-8 leading-none">
                     VEDARA
                   </h1>
-                  <p className="text-2xl md:text-3xl lg:text-4xl text-primary/90 font-light italic leading-relaxed">
+                  <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-primary/90 font-light italic leading-relaxed">
                     Where spaces become stories
                   </p>
                 </div>
 
-                <div className="w-24 h-[1px] bg-primary" />
+                <div className="w-24 h-[1px] bg-primary mx-auto md:mx-0" />
 
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center md:justify-start">
                   <Button 
                     variant="luxury" 
                     size="lg"
                     onClick={() => navigate("/portfolio")}
-                    className="shadow-gold group"
+                    className="shadow-gold group w-full sm:w-auto"
                   >
                     Explore
                     <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -139,7 +148,7 @@ const HeroWithFlowingModel = () => {
                     variant="outline" 
                     size="lg"
                     onClick={() => navigate("/contact")}
-                    className="border-primary/50 text-foreground hover:bg-primary/10"
+                    className="border-primary/50 text-foreground hover:bg-primary/10 w-full sm:w-auto"
                   >
                     Connect
                   </Button>
@@ -147,8 +156,8 @@ const HeroWithFlowingModel = () => {
               </div>
             </ScrollAnimationWrapper>
 
-            {/* Right Side - Placeholder for 3D Model (actual model is fixed) */}
-            <div className="relative h-[600px] lg:h-[700px]">
+            {/* Right Side - Placeholder for 3D Model (actual model is fixed) - Hidden on mobile */}
+            <div className="relative h-[400px] md:h-[600px] lg:h-[700px] hidden md:block">
               {/* Decorative Elements */}
               <div className="absolute -top-10 -right-10 w-40 h-40 border border-primary/20 rounded-full animate-pulse" />
               <div className="absolute -bottom-10 -left-10 w-32 h-32 border border-primary/10 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
@@ -174,9 +183,9 @@ const HeroWithFlowingModel = () => {
         <div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px]" />
 
         <div className="container mx-auto px-6 py-20 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen">
-            {/* Left Side - 3D Model (stuck here after animation) */}
-            <div className="relative h-[700px] lg:h-[800px]">
+          <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-screen">
+            {/* Left Side - 3D Model (stuck here after animation) - Hidden on mobile */}
+            <div className="relative h-[400px] md:h-[500px] lg:h-[700px] xl:h-[800px] hidden md:block">
               {/* Decorative Elements */}
               <div className="absolute -top-10 -left-10 w-40 h-40 border border-primary/20 rounded-full" />
               <div className="absolute -bottom-10 -right-10 w-32 h-32 border border-primary/10 rounded-full" />
@@ -207,19 +216,19 @@ const HeroWithFlowingModel = () => {
             </div>
 
             {/* Right Side - Minimal Text Content */}
-            <div className="space-y-6">
-              <h2 className="text-4xl md:text-5xl font-heading text-primary mb-4">
+            <div className="space-y-6 text-center md:text-left">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading text-primary mb-4">
                 What we do?
               </h2>
               
               <div className="space-y-5">
-                <p className="text-xl md:text-2xl text-foreground/80 leading-relaxed max-w-2xl font-light">
+                <p className="text-lg sm:text-xl md:text-2xl text-foreground/80 leading-relaxed max-w-2xl font-light mx-auto md:mx-0">
                   Crafting timeless interiors where every detail speaks of elegance and sophistication.
                 </p>
-                <p className="text-xl md:text-2xl text-foreground/80 leading-relaxed max-w-2xl font-light">
+                <p className="text-lg sm:text-xl md:text-2xl text-foreground/80 leading-relaxed max-w-2xl font-light mx-auto md:mx-0">
                   VEDARA transforms spaces into living art through bespoke design and uncompromising quality.
                 </p>
-                <p className="text-xl md:text-2xl text-foreground/70 leading-relaxed max-w-2xl font-light">
+                <p className="text-lg sm:text-xl md:text-2xl text-foreground/70 leading-relaxed max-w-2xl font-light mx-auto md:mx-0">
                   From concept to completion, we curate experiences that reflect your unique vision while maintaining the highest standards of craftsmanship.
                 </p>
               </div>
