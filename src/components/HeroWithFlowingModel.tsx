@@ -7,6 +7,19 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 
 const ModelViewer = lazy(() => import("@/components/ModelViewer"));
 
+// Preload the model after initial page load
+if (typeof window !== 'undefined') {
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.href = '/sofa_and_lamp.glb';
+      link.as = 'fetch';
+      document.head.appendChild(link);
+    }, 1000);
+  });
+}
+
 const HeroWithFlowingModel = () => {
   const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
