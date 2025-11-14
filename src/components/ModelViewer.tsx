@@ -63,8 +63,8 @@ const ModelViewer = ({
           background: 'transparent',
           pointerEvents: disableInteraction ? 'none' : 'auto',
         }}
-        loading="lazy"
-        reveal="interaction"
+        loading="eager"
+        reveal="auto"
       >
         <div slot="progress-bar" style={{ display: 'none' }} />
       </model-viewer>
