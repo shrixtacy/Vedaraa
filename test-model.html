@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Compressed 3D Model</title>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: #C9A23F;
+        }
+        h1 {
+            text-align: center;
+        }
+        model-viewer {
+            width: 100%;
+            height: 600px;
+            background-color: #111;
+            border: 2px solid #C9A23F;
+            border-radius: 8px;
+        }
+        .info {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background: #111;
+            border-radius: 8px;
+        }
+        .success {
+            color: #4CAF50;
+        }
+        .error {
+            color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <h1>🛋️ Compressed Sofa Model Test</h1>
+    
+    <model-viewer
+        id="model"
+        src="/sofa_and_lamp.glb"
+        alt="Compressed Luxury Sofa"
+        auto-rotate
+        camera-controls
+        shadow-intensity="1"
+        exposure="1"
+        camera-orbit="45deg 75deg 105%"
+    >
+        <div slot="progress-bar">
+            <p style="text-align: center; color: #C9A23F;">Loading compressed model...</p>
+        </div>
+    </model-viewer>
+
+    <div class="info">
+        <h2>Compression Results:</h2>
+        <p><strong>Original:</strong> 254.62 MB</p>
+        <p><strong>Compressed:</strong> 3.42 MB</p>
+        <p><strong>Reduction:</strong> 98.7% smaller! 🎉</p>
+        <p id="status">Waiting for model to load...</p>
+    </div>
+
+    <script>
+        const modelViewer = document.getElementById('model');
+        const status = document.getElementById('status');
+
+        modelViewer.addEventListener('load', () => {
+            status.innerHTML = '<span class="success">✅ Model loaded successfully!</span>';
+            console.log('Model loaded successfully');
+        });
+
+        modelViewer.addEventListener('error', (event) => {
+            status.innerHTML = '<span class="error">❌ Error loading model</span>';
+            console.error('Error loading model:', event);
+        });
+
+        modelViewer.addEventListener('progress', (event) => {
+            const progress = event.detail.totalProgress * 100;
+            status.textContent = `Loading: ${progress.toFixed(0)}%`;
+        });
+    </script>
+</body>
+</html>
