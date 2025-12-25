@@ -1,51 +1,20 @@
-import Navbar from "@/components/Navbar";
-import HeroWithFlowingModel from "@/components/HeroWithFlowingModel";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Portfolio from "@/components/Portfolio";
-import Downloads from "@/components/Downloads";
-import ContactForm from "@/components/ContactForm";
-import Meeting from "@/components/Meeting";
+import LandingHero from "@/components/landing/LandingHero";
+import LandingIntro from "@/components/landing/LandingIntro";
+import LandingExhibition from "@/components/landing/LandingExhibition";
+import LandingServices from "@/components/landing/LandingServices";
+import TextMarquee from "@/components/landing/TextMarquee";
 import Footer from "@/components/Footer";
-import ScrollAnimationWrapper from "@/components/ScrollAnimationWrapper";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Navbar />
-      <main>
-        {/* Hero with Flowing 3D Model - Model flows from right to left on scroll */}
-        <HeroWithFlowingModel />
-        
-        {/* Original Hero Section */}
-        <ScrollAnimationWrapper animationType="fadeIn" duration={1}>
-          <Hero />
-        </ScrollAnimationWrapper>
-        
-        <ScrollAnimationWrapper animationType="fadeUp" delay={0.1}>
-          <About />
-        </ScrollAnimationWrapper>
-        
-        <ScrollAnimationWrapper animationType="fadeUp" delay={0.2}>
-          <Portfolio />
-        </ScrollAnimationWrapper>
-        
-        <ScrollAnimationWrapper animationType="slideLeft" delay={0.1}>
-          <Downloads />
-        </ScrollAnimationWrapper>
-        
-        <ScrollAnimationWrapper animationType="fadeUp" delay={0.2}>
-          <ContactForm />
-        </ScrollAnimationWrapper>
-        
-        <ScrollAnimationWrapper animationType="slideRight" delay={0.1}>
-          <Meeting />
-        </ScrollAnimationWrapper>
-      </main>
-      
-      <ScrollAnimationWrapper animationType="fadeUp">
-        <Footer />
-      </ScrollAnimationWrapper>
+    <div className="flex flex-col min-h-screen">
+      <LandingHero />
+      <LandingIntro />
+      <TextMarquee text="Spatial Intelligence" />
+      <LandingServices />
+      <LandingExhibition />
+      <TextMarquee text="Design for Future" />
+      <Footer />
     </div>
   );
 };
