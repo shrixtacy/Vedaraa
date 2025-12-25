@@ -1,75 +1,46 @@
-import { MapPin, Phone, Mail, Instagram, Facebook, Linkedin } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-card border-t border-primary/20 py-12 px-6">
-      <div className="container mx-auto">
-        <div className="grid md:grid-cols-3 gap-12 mb-8">
-          {/* Brand */}
+    <footer className="bg-foreground text-background py-24 px-6 md:px-12">
+      <div className="max-w-7xl mx-auto flex flex-col justify-between min-h-[50vh]">
+        <div className="grid md:grid-cols-2 gap-12">
           <div>
-            <h3 className="text-3xl font-heading text-primary mb-4">VEDARA</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              Crafting spaces that speak elegance. Premium interior design 
-              solutions for discerning clients.
+            <span className="text-xs uppercase tracking-widest opacity-60 block mb-8">Get in Touch</span>
+            <div className="flex flex-col gap-4 items-start">
+              <a href="mailto:hello@vedara.design" className="text-2xl md:text-4xl font-heading hover:opacity-70 transition-opacity">
+                hello@vedara.design
+              </a>
+              <a href="tel:+919876543210" className="text-xl md:text-2xl font-heading opacity-80 hover:opacity-100 transition-opacity">
+                +91 98765 43210
+              </a>
+            </div>
+            <p className="mt-8 text-sm opacity-60 max-w-xs">
+              123 Design Boulevard<br />
+              Mumbai, Maharashtra 400001
             </p>
           </div>
 
-          {/* Contact */}
-          <div>
-            <h4 className="text-lg font-heading text-foreground mb-4">Contact</h4>
-            <div className="space-y-3">
-              <div className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
-                <p className="text-sm text-muted-foreground">
-                  123 Design Boulevard<br />
-                  Mumbai, Maharashtra 400001<br />
-                  India
-                </p>
-              </div>
-              <div className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-primary flex-shrink-0" />
-                <p className="text-sm text-muted-foreground">+91 98765 43210</p>
-              </div>
-              <div className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-primary flex-shrink-0" />
-                <p className="text-sm text-muted-foreground">hello@vedara.design</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Social */}
-          <div>
-            <h4 className="text-lg font-heading text-foreground mb-4">Follow Us</h4>
-            <div className="flex gap-4">
-              <a
-                href="#"
-                className="p-3 border border-primary rounded-sm hover:bg-primary hover:text-primary-foreground transition-smooth"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="p-3 border border-primary rounded-sm hover:bg-primary hover:text-primary-foreground transition-smooth"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="p-3 border border-primary rounded-sm hover:bg-primary hover:text-primary-foreground transition-smooth"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
+          <div className="flex flex-col md:items-end">
+            <span className="text-xs uppercase tracking-widest opacity-60 block mb-8">Socials</span>
+            <div className="flex flex-col gap-2 md:text-right">
+              {['Instagram', 'LinkedIn', 'Facebook'].map((social) => (
+                <a key={social} href="#" className="flex items-center gap-2 group text-xl font-heading">
+                  {social}
+                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
-        <div className="border-t border-primary/20 pt-8">
-          <p className="text-center text-sm text-muted-foreground">
-            © {new Date().getFullYear()} VEDARA Interior Design. All rights reserved.
-          </p>
+        <div className="mt-24 border-t border-background/20 pt-8 flex flex-col md:flex-row justify-between items-end">
+          <h1 className="text-[15vw] leading-none font-heading font-bold tracking-tighter mix-blend-difference select-none">
+            VEDARA
+          </h1>
+          <div className="pb-4 text-xs opacity-40 uppercase tracking-widest">
+            © {new Date().getFullYear()} Vedara Design
+          </div>
         </div>
       </div>
     </footer>
