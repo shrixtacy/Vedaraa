@@ -6,7 +6,7 @@ interface TextMarqueeProps {
 
 const TextMarquee = ({ text }: TextMarqueeProps) => {
     return (
-        <div className="relative flex overflow-hidden py-12 bg-foreground text-background border-t border-b border-background/20 select-none">
+        <div className="relative flex overflow-hidden py-12 bg-gradient-to-r from-black via-[#D4AF37] to-black text-white border-t border-b border-primary/20 select-none">
             <motion.div
                 className="flex whitespace-nowrap"
                 animate={{ x: ["0%", "-50%"] }}

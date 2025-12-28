@@ -2,7 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-foreground text-background py-24 px-6 md:px-12">
+    <footer className="bg-background text-foreground py-24 px-6 md:px-12 border-t border-primary/20">
       <div className="max-w-7xl mx-auto flex flex-col justify-between min-h-[50vh]">
         <div className="grid md:grid-cols-2 gap-12">
           <div>
