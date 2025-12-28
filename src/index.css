@@ -8,82 +8,74 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* VEDARA Minimalist Design System */
-    --background: 0 0% 100%;
-    /* Pure white */
-    --foreground: 0 0% 0%;
-    /* Pure black */
+    /* VEDARA Black & Gold Luxury Design System */
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
-
-    --primary: 0 0% 0%;
-    /* Black primary */
-    --primary-foreground: 0 0% 100%;
-    /* White text on primary */
-
-    --secondary: 0 0% 96%;
-    /* Light gray for secondary elements */
-    --secondary-foreground: 0 0% 0%;
-
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 50%;
-
-    --accent: 0 0% 96%;
-    --accent-foreground: 0 0% 0%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 90%;
-    /* Subtle borders */
-    --input: 0 0% 90%;
-    --ring: 0 0% 0%;
-
-    --radius: 0rem;
-    /* Sharp corners for minimalism */
-
-    /* Minimalist shadows */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-
-    /* Transitions */
-    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .dark {
+    /* Deep Rich Black Background */
     --background: 0 0% 3%;
-    /* Deep black aka #0a0a0a */
-    --foreground: 0 0% 98%;
+    --foreground: 45 20% 98%;
 
-    --card: 0 0% 3%;
-    --card-foreground: 0 0% 98%;
+    /* Card/Surface Colors - Slightly lighter black */
+    --card: 0 0% 6%;
+    --card-foreground: 45 20% 98%;
 
-    --popover: 0 0% 3%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 45 20% 98%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
+    /* Gold Primary */
+    --primary: 46 83% 58%;
+    /* #EBCB4B - Luxurious Gold */
+    --primary-foreground: 0 0% 0%;
+    /* Black text on gold */
 
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 45 20% 98%;
 
-    --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 63%;
 
-    --accent: 0 0% 10%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 46 83% 58%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 0 0% 15%;
     --input: 0 0% 15%;
-    --ring: 0 0% 80%;
+    --ring: 46 83% 58%;
+    /* Gold ring */
+
+    --radius: 0rem;
+
+    /* Shadows - Gold tinted glow */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
+    --shadow-gold: 0 0 15px rgba(235, 203, 75, 0.1);
+
+    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .dark {
+    /* Same as root since we are forcing dark/gold theme */
+    --background: 0 0% 3%;
+    --foreground: 45 20% 98%;
+    --card: 0 0% 6%;
+    --card-foreground: 45 20% 98%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 45 20% 98%;
+    --primary: 46 83% 58%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 45 20% 98%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 63%;
+    --accent: 46 83% 58%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 46 83% 58%;
   }
 }
 

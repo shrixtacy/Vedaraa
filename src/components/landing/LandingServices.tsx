@@ -36,10 +36,10 @@ const LandingServices = () => {
         <section className="py-24 px-6 md:px-12 max-w-7xl mx-auto bg-background text-foreground">
             <div className="flex flex-col md:flex-row gap-12">
                 <div className="md:w-1/3">
-                    <span className="text-xs font-bold uppercase tracking-widest border-b border-foreground/20 pb-2">
+                    <span className="text-xs font-bold uppercase tracking-widest border-b border-primary/40 pb-2 text-primary">
                         Our Expertise
                     </span>
-                    <p className="mt-8 text-lg opacity-70 max-w-xs">
+                    <p className="mt-8 text-lg text-muted-foreground max-w-xs">
                         We offer a comprehensive suite of design services tailored to elevate your vision.
                     </p>
                 </div>
@@ -48,18 +48,18 @@ const LandingServices = () => {
                     {services.map((service, index) => (
                         <div
                             key={service.id}
-                            className="group relative border-b border-foreground/20 py-12 transition-colors hover:bg-secondary/20 cursor-none"
+                            className="group relative border-b border-primary/20 py-12 transition-colors hover:bg-primary/5 cursor-none"
                             onMouseEnter={() => setHoveredService(index)}
                             onMouseLeave={() => setHoveredService(null)}
                         >
                             <div className="flex items-baseline justify-between">
                                 <div className="flex items-baseline gap-8">
-                                    <span className="text-xs font-mono opacity-50">{service.id}</span>
-                                    <h3 className="text-4xl md:text-6xl font-heading font-medium group-hover:pl-4 transition-all duration-300">
+                                    <span className="text-xs font-mono text-primary/60">{service.id}</span>
+                                    <h3 className="text-4xl md:text-6xl font-heading font-medium group-hover:pl-4 transition-all duration-300 text-foreground group-hover:text-primary">
                                         {service.title}
                                     </h3>
                                 </div>
-                                <ArrowUpRight className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-2 group-hover:-translate-y-2" />
+                                <ArrowUpRight className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-2 group-hover:-translate-y-2 text-primary" />
                             </div>
 
                             <AnimatePresence>
@@ -79,7 +79,7 @@ const LandingServices = () => {
                                                 animate={{ opacity: 1, scale: 1 }}
                                                 src={service.image}
                                                 alt={service.title}
-                                                className="hidden md:block w-48 h-32 object-cover rounded-sm grayscale"
+                                                className="hidden md:block w-48 h-32 object-cover rounded-sm border border-primary/20"
                                             />
                                         </div>
                                     </motion.div>

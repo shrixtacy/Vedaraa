@@ -41,16 +41,16 @@ const LandingExhibition = () => {
             <div className="sticky top-0 flex h-screen items-center overflow-hidden pl-12 md:pl-24">
                 <motion.div style={{ x }} className="flex gap-12 md:gap-24">
                     <div className="flex flex-col justify-center min-w-[30vw] md:min-w-[20vw]">
-                        <h2 className="text-6xl md:text-8xl font-heading font-medium leading-none">
+                        <h2 className="text-6xl md:text-8xl font-heading font-medium leading-none bg-clip-text text-transparent bg-gradient-to-b from-[#D4AF37] via-[#FFF8DC] to-[#D4AF37]">
                             SELECTED <br /> WORKS
                         </h2>
-                        <p className="mt-8 text-sm uppercase tracking-widest opacity-60">
+                        <p className="mt-8 text-sm uppercase tracking-widest text-primary/60">
                             Swipe to Explore
                         </p>
                     </div>
 
                     {projects.map((project) => (
-                        <div key={project.id} className="relative group w-[80vw] md:w-[60vh] aspect-[3/4] overflow-hidden bg-secondary/50 grayscale hover:grayscale-0 transition-all duration-700">
+                        <div key={project.id} className="relative group w-[80vw] md:w-[60vh] aspect-[3/4] overflow-hidden bg-background border border-primary/20 transition-all duration-700">
                             <motion.img
                                 whileHover={{ scale: 1.05 }}
                                 transition={{ duration: 0.5 }}

@@ -29,12 +29,12 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${scrolled ? "py-4 bg-background/80 backdrop-blur-md border-b border-border/40" : "py-6 bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${scrolled ? "py-4 bg-background/80 backdrop-blur-md border-b border-primary/20" : "py-6 bg-transparent"
         }`}
     >
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
-          <Link to="/" className="text-xl font-bold font-heading tracking-tighter hover:opacity-70 transition-opacity">
+          <Link to="/" className="text-xl font-bold font-heading tracking-tighter text-primary hover:opacity-70 transition-opacity">
             VEDARA
           </Link>
 
@@ -45,8 +45,8 @@ const Navbar = () => {
                 <Link
                   to={item.path}
                   className={`relative text-sm font-medium tracking-tight transition-colors duration-300 link-underline ${isActive(item.path)
-                      ? "text-foreground"
-                      : "text-muted-foreground hover:text-foreground"
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-primary"
                     }`}
                 >
                   {item.name}
