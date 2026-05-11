@@ -1,32 +1,53 @@
 import { useRef } from "react";
 import { motion, useTransform, useScroll } from "framer-motion";
 
+import work1 from "@/assets/work-1.jpg";
+import work2 from "@/assets/work-2.jpg";
+import work3 from "@/assets/work-3.jpg";
+import work5 from "@/assets/work-5.jpg";
+import work6 from "@/assets/work-6.jpg";
+import work7 from "@/assets/work-7.jpg";
+
 const projects = [
     {
-        title: "VILLA AZURE",
+        title: "MODERN KITCHEN",
         category: "Residential",
-        image: "/portfolio-1.jpg",
+        image: work1,
         id: 1,
     },
     {
-        title: "NEXUS TOWER",
-        category: "Commercial",
-        image: "/portfolio-2.jpg",
+        title: "CONTEMPORARY BEDROOM",
+        category: "Residential",
+        image: work2,
         id: 2,
     },
     {
-        title: "OASIS RESORT",
-        category: "Hospitality",
-        image: "/portfolio-3.jpg",
+        title: "MASTER SUITE",
+        category: "Residential",
+        image: work3,
         id: 3,
     },
     {
-        title: "URBAN LOFT",
-        category: "Interior",
-        image: "/portfolio-4.jpg",
+        title: "LIVING SPACES",
+        category: "Residential",
+        image: work5,
         id: 4,
     },
+    {
+        title: "CHIC INTERIORS",
+        category: "Residential",
+        image: work6,
+        id: 5,
+    },
+    {
+        title: "MINIMALIST BEDROOM",
+        category: "Residential",
+        image: work7,
+        id: 6,
+    },
 ];
+
+
 
 const LandingExhibition = () => {
     const targetRef = useRef<HTMLDivElement>(null);
@@ -34,7 +55,7 @@ const LandingExhibition = () => {
         target: targetRef,
     });
 
-    const x = useTransform(scrollYProgress, [0, 1], ["0%", "-55%"]);
+    const x = useTransform(scrollYProgress, [0, 1], ["0%", "-70%"]);
 
     return (
         <section ref={targetRef} className="relative h-[300vh] bg-background">

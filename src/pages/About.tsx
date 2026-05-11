@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Award, Users, Sparkles, Clock } from "lucide-react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import StaggeredAnimation from "@/components/StaggeredAnimation";
 import ScrollAnimationWrapper from "@/components/ScrollAnimationWrapper";
 import { useParallax } from "@/hooks/useParallax";
@@ -63,8 +62,11 @@ const About = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Navbar />
+    <>
+      <SEO 
+        title="About Our Philosophy"
+        description="Learn about the VEDARA approach to luxury interior design, focusing on timeless elegance and bespoke craftsmanship."
+      />
       
       <main>
         <section 
@@ -158,8 +160,7 @@ const About = () => {
         </section>
       </main>
 
-      <Footer />
-    </div>
+    </>
   );
 };
 

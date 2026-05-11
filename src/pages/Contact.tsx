@@ -5,8 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import ScrollAnimationWrapper from "@/components/ScrollAnimationWrapper";
 import StaggeredAnimation from "@/components/StaggeredAnimation";
 import { useParallax } from "@/hooks/useParallax";
@@ -17,7 +16,7 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Visit Our Studio",
-    details: ["123 Design District", "Luxury Avenue, Suite 500", "New York, NY 10001"]
+    details: ["630 Cohopers, Dlf Cybercity", "Patia, Bhubaneswar", "Odisha"]
   },
   {
     icon: Phone,
@@ -27,7 +26,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email Us",
-    details: ["hello@vedara.com", "projects@vedara.com", "careers@vedara.com"]
+    details: ["vedaraspace@gmail.com"]
   },
   {
     icon: Clock,
@@ -87,8 +86,11 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Navbar />
+    <>
+      <SEO 
+        title="Contact VEDARA"
+        description="Ready to transform your space? Contact VEDARA for premium interior design consultations and bespoke projects."
+      />
       
       <main>
         <section 
@@ -267,8 +269,7 @@ const Contact = () => {
         </section>
       </main>
 
-      <Footer />
-    </div>
+    </>
   );
 };
 
