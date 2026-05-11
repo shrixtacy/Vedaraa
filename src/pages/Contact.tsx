@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -36,8 +37,10 @@ const contactInfo = [
 ];
 
 const Contact = () => {
-  const { elementRef, transform } = useParallax({ speed: 0.4 });
   const { toast } = useToast();
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-10%" });
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -55,7 +58,6 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
       toast({
         title: "Please fill in required fields",
@@ -65,7 +67,6 @@ const Contact = () => {
       return;
     }
 
-    // In a real application, you would send this data to your backend
     console.log("Form submitted:", formData);
     
     toast({
@@ -73,7 +74,6 @@ const Contact = () => {
       description: "We'll get back to you within 24 hours.",
     });
 
-    // Reset form
     setFormData({
       name: "",
       email: "",
@@ -86,190 +86,186 @@ const Contact = () => {
   };
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen bg-background">
       <SEO 
         title="Contact VEDARA"
         description="Ready to transform your space? Contact VEDARA for premium interior design consultations and bespoke projects."
       />
       
-      <main>
-        <section 
-          ref={elementRef} 
-          className="relative py-32 px-6 overflow-hidden min-h-screen"
-        >
-          {/* Parallax Background */}
-          <div 
-            className="absolute inset-0 bg-cover bg-center parallax-bg"
-            style={{ 
-              backgroundImage: `url(${aboutBackground})`,
-              transform: transform,
-            }}
-          >
-            <div className="absolute inset-0 bg-black/80" />
-          </div>
-
-          <div className="container mx-auto relative z-10">
-            <div className="max-w-6xl mx-auto">
-              <ScrollAnimationWrapper animationType="fadeUp">
-                <div className="text-center mb-16">
-                  <p className="text-primary font-accent text-4xl mb-4">Get In Touch</p>
-                  <h1 className="text-5xl font-heading mb-6">Contact Us</h1>
-                  <div className="w-24 h-[1px] bg-primary mx-auto mb-6" />
-                  <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    Ready to transform your space? Let's discuss your vision and bring it to life.
-                  </p>
-                </div>
-              </ScrollAnimationWrapper>
-
-              <div className="grid lg:grid-cols-2 gap-12">
-                {/* Contact Information */}
-                <ScrollAnimationWrapper animationType="slideRight">
-                  <div className="space-y-8">
-                    <h2 className="text-3xl font-heading text-primary mb-8">Let's Connect</h2>
-                    
-                    <StaggeredAnimation 
-                      className="space-y-6"
-                      staggerDelay={0.1}
-                      animationType="fadeUp"
-                    >
-                      {contactInfo.map((info, index) => {
-                        const Icon = info.icon;
-                        return (
-                          <div key={index} className="flex gap-4 p-4 border border-primary/20 rounded-sm bg-card/20 backdrop-blur-sm">
-                            <div className="p-3 bg-primary/10 rounded-sm">
-                              <Icon className="w-5 h-5 text-primary" />
-                            </div>
-                            <div>
-                              <h3 className="font-heading text-primary mb-2">{info.title}</h3>
-                              {info.details.map((detail, idx) => (
-                                <p key={idx} className="text-muted-foreground text-sm">
-                                  {detail}
-                                </p>
-                              ))}
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </StaggeredAnimation>
-                  </div>
-                </ScrollAnimationWrapper>
-
-                {/* Contact Form */}
-                <ScrollAnimationWrapper animationType="slideLeft">
-                  <div className="p-8 border border-primary/30 rounded-sm bg-card/20 backdrop-blur-sm">
-                    <h2 className="text-3xl font-heading text-primary mb-8">Start Your Project</h2>
-                    
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <Label htmlFor="name" className="text-foreground">Name *</Label>
-                          <Input
-                            id="name"
-                            value={formData.name}
-                            onChange={(e) => handleInputChange("name", e.target.value)}
-                            className="bg-background/50 border-primary/30 text-foreground"
-                            required
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor="email" className="text-foreground">Email *</Label>
-                          <Input
-                            id="email"
-                            type="email"
-                            value={formData.email}
-                            onChange={(e) => handleInputChange("email", e.target.value)}
-                            className="bg-background/50 border-primary/30 text-foreground"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <div>
-                        <Label htmlFor="phone" className="text-foreground">Phone</Label>
-                        <Input
-                          id="phone"
-                          value={formData.phone}
-                          onChange={(e) => handleInputChange("phone", e.target.value)}
-                          className="bg-background/50 border-primary/30 text-foreground"
-                        />
-                      </div>
-
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <Label className="text-foreground">Project Type</Label>
-                          <Select onValueChange={(value) => handleInputChange("projectType", value)}>
-                            <SelectTrigger className="bg-background/50 border-primary/30 text-foreground">
-                              <SelectValue placeholder="Select project type" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="residential">Residential</SelectItem>
-                              <SelectItem value="commercial">Commercial</SelectItem>
-                              <SelectItem value="renovation">Renovation</SelectItem>
-                              <SelectItem value="consultation">Consultation</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        <div>
-                          <Label className="text-foreground">Budget Range</Label>
-                          <Select onValueChange={(value) => handleInputChange("budget", value)}>
-                            <SelectTrigger className="bg-background/50 border-primary/30 text-foreground">
-                              <SelectValue placeholder="Select budget range" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="50k-100k">$50K - $100K</SelectItem>
-                              <SelectItem value="100k-250k">$100K - $250K</SelectItem>
-                              <SelectItem value="250k-500k">$250K - $500K</SelectItem>
-                              <SelectItem value="500k+">$500K+</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      </div>
-
-                      <div>
-                        <Label className="text-foreground">Timeline</Label>
-                        <Select onValueChange={(value) => handleInputChange("timeline", value)}>
-                          <SelectTrigger className="bg-background/50 border-primary/30 text-foreground">
-                            <SelectValue placeholder="Select timeline" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="asap">ASAP</SelectItem>
-                            <SelectItem value="1-3months">1-3 Months</SelectItem>
-                            <SelectItem value="3-6months">3-6 Months</SelectItem>
-                            <SelectItem value="6months+">6+ Months</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      <div>
-                        <Label htmlFor="message" className="text-foreground">Message *</Label>
-                        <Textarea
-                          id="message"
-                          value={formData.message}
-                          onChange={(e) => handleInputChange("message", e.target.value)}
-                          className="bg-background/50 border-primary/30 text-foreground min-h-[120px]"
-                          placeholder="Tell us about your project vision..."
-                          required
-                        />
-                      </div>
-
-                      <Button 
-                        type="submit" 
-                        variant="luxury" 
-                        size="lg" 
-                        className="w-full shadow-gold"
-                      >
-                        Send Message
-                      </Button>
-                    </form>
-                  </div>
-                </ScrollAnimationWrapper>
-              </div>
+      <main className="flex-1">
+        {/* Header Section */}
+        <section className="py-32 px-6 md:px-12 max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row gap-12 md:gap-24 items-start">
+            <div className="md:w-1/3">
+              <span className="text-xs font-bold uppercase tracking-widest border-b border-foreground/20 pb-2">
+                Contact
+              </span>
             </div>
+
+            <div className="md:w-2/3">
+              <h1 className="text-3xl md:text-5xl font-heading font-medium leading-[1.15] mb-8">
+                Let's Create Something Extraordinary
+              </h1>
+              <p className="text-foreground/70 leading-relaxed">
+                Ready to transform your space? Share your vision with us and let's begin 
+                the journey toward exceptional design.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Form Section */}
+        <section ref={containerRef} className="py-16 px-6 md:px-12 max-w-7xl mx-auto border-t border-foreground/10">
+          <div className="grid lg:grid-cols-2 gap-16">
+            {/* Contact Information */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="space-y-12"
+            >
+              <div>
+                <h2 className="text-2xl font-heading font-medium mb-6">Get in Touch</h2>
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="font-medium mb-2">Studio</h3>
+                    <p className="text-foreground/70 text-sm leading-relaxed">
+                      123 Design District<br />
+                      New York, NY 10001
+                    </p>
+                  </div>
+                  
+                  <div>
+                    <h3 className="font-medium mb-2">Contact</h3>
+                    <p className="text-foreground/70 text-sm leading-relaxed">
+                      hello@vedara.com<br />
+                      +1 (555) 123-4567
+                    </p>
+                  </div>
+                  
+                  <div>
+                    <h3 className="font-medium mb-2">Hours</h3>
+                    <p className="text-foreground/70 text-sm leading-relaxed">
+                      Monday - Friday: 9AM - 6PM<br />
+                      Saturday: By Appointment
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Contact Form */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            >
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="name" className="text-sm font-medium">Name *</Label>
+                    <Input
+                      id="name"
+                      value={formData.name}
+                      onChange={(e) => handleInputChange("name", e.target.value)}
+                      className="mt-2 bg-transparent border-foreground/20 focus:border-primary"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="email" className="text-sm font-medium">Email *</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => handleInputChange("email", e.target.value)}
+                      className="mt-2 bg-transparent border-foreground/20 focus:border-primary"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <Label htmlFor="phone" className="text-sm font-medium">Phone</Label>
+                  <Input
+                    id="phone"
+                    value={formData.phone}
+                    onChange={(e) => handleInputChange("phone", e.target.value)}
+                    className="mt-2 bg-transparent border-foreground/20 focus:border-primary"
+                  />
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <Label className="text-sm font-medium">Project Type</Label>
+                    <Select onValueChange={(value) => handleInputChange("projectType", value)}>
+                      <SelectTrigger className="mt-2 bg-transparent border-foreground/20 focus:border-primary">
+                        <SelectValue placeholder="Select type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="residential">Residential</SelectItem>
+                        <SelectItem value="commercial">Commercial</SelectItem>
+                        <SelectItem value="renovation">Renovation</SelectItem>
+                        <SelectItem value="consultation">Consultation</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium">Budget Range</Label>
+                    <Select onValueChange={(value) => handleInputChange("budget", value)}>
+                      <SelectTrigger className="mt-2 bg-transparent border-foreground/20 focus:border-primary">
+                        <SelectValue placeholder="Select range" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="50k-100k">$50K - $100K</SelectItem>
+                        <SelectItem value="100k-250k">$100K - $250K</SelectItem>
+                        <SelectItem value="250k-500k">$250K - $500K</SelectItem>
+                        <SelectItem value="500k+">$500K+</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                <div>
+                  <Label className="text-sm font-medium">Timeline</Label>
+                  <Select onValueChange={(value) => handleInputChange("timeline", value)}>
+                    <SelectTrigger className="mt-2 bg-transparent border-foreground/20 focus:border-primary">
+                      <SelectValue placeholder="Select timeline" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="asap">ASAP</SelectItem>
+                      <SelectItem value="1-3months">1-3 Months</SelectItem>
+                      <SelectItem value="3-6months">3-6 Months</SelectItem>
+                      <SelectItem value="6months+">6+ Months</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <Label htmlFor="message" className="text-sm font-medium">Message *</Label>
+                  <Textarea
+                    id="message"
+                    value={formData.message}
+                    onChange={(e) => handleInputChange("message", e.target.value)}
+                    className="mt-2 bg-transparent border-foreground/20 focus:border-primary min-h-[120px] resize-none"
+                    placeholder="Tell us about your project vision..."
+                    required
+                  />
+                </div>
+
+                <Button 
+                  type="submit" 
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-12"
+                >
+                  Send Message
+                </Button>
+              </form>
+            </motion.div>
           </div>
         </section>
       </main>
 
-    </>
+    </div>
   );
 };
 
