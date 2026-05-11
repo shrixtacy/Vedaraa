@@ -2,71 +2,85 @@ import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import portfolio1 from "@/assets/portfolio-1.jpg";
-import portfolio2 from "@/assets/portfolio-2.jpg";
-import portfolio3 from "@/assets/portfolio-3.jpg";
-import portfolio4 from "@/assets/portfolio-4.jpg";
-import portfolio5 from "@/assets/portfolio-5.jpg";
-import portfolio6 from "@/assets/portfolio-6.jpg";
+import SEO from "@/components/SEO";
+import StaggeredAnimation from "@/components/StaggeredAnimation";
+import ScrollAnimationWrapper from "@/components/ScrollAnimationWrapper";
+import { useParallax } from "@/hooks/useParallax";
+import work1 from "@/assets/work-1.jpg";
+import work2 from "@/assets/work-2.jpg";
+import work3 from "@/assets/work-3.jpg";
+import work4 from "@/assets/work-4.jpg";
+import work5 from "@/assets/work-5.jpg";
+import work6 from "@/assets/work-6.jpg";
+import work7 from "@/assets/work-7.jpg";
+import portfolioBackground from "@/assets/portfolio-background.jpg";
 
 const portfolioItems = [
   { 
     id: 1, 
-    title: "Luxury Living Room", 
+    title: "MODERN KITCHEN", 
     category: "Residential", 
-    image: portfolio1,
-    description: "A contemporary living space featuring custom Italian marble flooring, bespoke velvet furnishings, and curated art pieces.",
-    area: "3,500 sq ft",
+    image: work1,
+    description: "A sleek, contemporary kitchen design featuring teal cabinetry, minimalist hardware, and optimized spatial flow for modern culinary needs.",
+    area: "450 sq ft",
     year: "2024"
   },
   { 
     id: 2, 
-    title: "Premium Bedroom Suite", 
+    title: "CONTEMPORARY BEDROOM", 
     category: "Residential", 
-    image: portfolio2,
-    description: "Master bedroom sanctuary with walk-in closet and en-suite spa bathroom.",
-    area: "1,200 sq ft",
+    image: work2,
+    description: "A luxurious bedroom suite with custom wood paneling, integrated mood lighting, and a sophisticated color palette designed for tranquility.",
+    area: "550 sq ft",
     year: "2024"
   },
   { 
     id: 3, 
-    title: "Designer Kitchen", 
+    title: "MASTER SUITE", 
     category: "Residential", 
-    image: portfolio3,
-    description: "A chef's dream kitchen with professional-grade appliances and custom cabinetry.",
-    area: "800 sq ft",
-    year: "2023"
+    image: work3,
+    description: "Our signature master suite design focusing on layered lighting, high-end textures, and a seamless integration of storage and comfort.",
+    area: "650 sq ft",
+    year: "2024"
   },
   { 
     id: 4, 
-    title: "Elegant Dining Space", 
+    title: "LIVING SPACES", 
     category: "Residential", 
-    image: portfolio4,
-    description: "Formal dining room with statement chandelier and luxurious finishes.",
-    area: "600 sq ft",
-    year: "2023"
+    image: work5,
+    description: "An elegant living area featuring a custom-built TV unit with wood accents and ambient backlighting, creating a perfect space for relaxation.",
+    area: "800 sq ft",
+    year: "2024"
   },
   { 
     id: 5, 
-    title: "Executive Home Office", 
-    category: "Commercial", 
-    image: portfolio5,
-    description: "Professional workspace designed for productivity and style.",
+    title: "CHIC INTERIORS", 
+    category: "Residential", 
+    image: work6,
+    description: "A refined interior space that balances bold textures with soft lighting, creating an atmosphere of understated luxury.",
     area: "400 sq ft",
     year: "2024"
   },
   { 
     id: 6, 
-    title: "Spa-Inspired Bathroom", 
+    title: "MINIMALIST BEDROOM", 
     category: "Residential", 
-    image: portfolio6,
-    description: "Luxurious bathroom retreat with natural stone and minimalist design.",
-    area: "350 sq ft",
-    year: "2023"
+    image: work7,
+    description: "A clean, minimalist approach to bedroom design that prioritizes space, light, and essential forms for a peaceful living experience.",
+    area: "500 sq ft",
+    year: "2024"
+  },
+  { 
+    id: 7, 
+    title: "DESIGNER SUITE", 
+    category: "Residential", 
+    image: work4,
+    description: "A versatile designer suite that showcases our ability to blend functionality with artistic expression in high-end residential projects.",
+    area: "600 sq ft",
+    year: "2024"
   },
 ];
+
 
 const Portfolio = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -81,7 +95,10 @@ const Portfolio = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      <Navbar />
+      <SEO 
+        title="Our Portfolio"
+        description="Explore VEDARA's collection of luxury residential and commercial interior design projects. Bespoke solutions for modern living."
+      />
       
       <main className="flex-1">
         {/* Header Section */}
@@ -192,7 +209,6 @@ const Portfolio = () => {
         </Dialog>
       </main>
 
-      <Footer />
     </div>
   );
 };

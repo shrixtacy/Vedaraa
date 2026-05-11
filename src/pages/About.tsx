@@ -1,7 +1,18 @@
-import { useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { Award, Users, Sparkles, Clock } from "lucide-react";
+import SEO from "@/components/SEO";
+import StaggeredAnimation from "@/components/StaggeredAnimation";
+import ScrollAnimationWrapper from "@/components/ScrollAnimationWrapper";
+import { useParallax } from "@/hooks/useParallax";
+import aboutBackground from "@/assets/about-background.jpg";
+
+const stats = [
+  { icon: Award, label: "Years of Excellence", value: 15, suffix: "+" },
+  { icon: Users, label: "Happy Clients", value: 200, suffix: "+" },
+  { icon: Sparkles, label: "Projects Completed", value: 350, suffix: "+" },
+  { icon: Clock, label: "On-Time Delivery", value: 98, suffix: "%" },
+];
 
 const About = () => {
   const containerRef = useRef(null);
@@ -12,7 +23,10 @@ const About = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      <Navbar />
+      <SEO 
+        title="About Our Philosophy"
+        description="Learn about the VEDARA approach to luxury interior design, focusing on timeless elegance and bespoke craftsmanship."
+      />
       
       <main className="flex-1">
         {/* Hero Section */}
@@ -96,7 +110,6 @@ const About = () => {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 };

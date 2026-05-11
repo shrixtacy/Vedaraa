@@ -5,9 +5,36 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import SEO from "@/components/SEO";
+import ScrollAnimationWrapper from "@/components/ScrollAnimationWrapper";
+import StaggeredAnimation from "@/components/StaggeredAnimation";
+import { useParallax } from "@/hooks/useParallax";
 import { useToast } from "@/hooks/use-toast";
+import aboutBackground from "@/assets/about-background.jpg";
+
+const contactInfo = [
+  {
+    icon: MapPin,
+    title: "Visit Our Studio",
+    details: ["630 Cohopers, Dlf Cybercity", "Patia, Bhubaneswar", "Odisha"]
+  },
+  {
+    icon: Phone,
+    title: "Call Us",
+    details: ["+1 (555) 123-4567", "+1 (555) 987-6543", "Mon-Fri: 9AM-6PM EST"]
+  },
+  {
+    icon: Mail,
+    title: "Email Us",
+    details: ["vedaraspace@gmail.com"]
+  },
+  {
+    icon: Clock,
+    title: "Business Hours",
+    details: ["Monday - Friday: 9AM - 6PM", "Saturday: 10AM - 4PM", "Sunday: By Appointment"]
+  }
+];
 
 const Contact = () => {
   const { toast } = useToast();
@@ -60,7 +87,10 @@ const Contact = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      <Navbar />
+      <SEO 
+        title="Contact VEDARA"
+        description="Ready to transform your space? Contact VEDARA for premium interior design consultations and bespoke projects."
+      />
       
       <main className="flex-1">
         {/* Header Section */}
@@ -235,7 +265,6 @@ const Contact = () => {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 };
